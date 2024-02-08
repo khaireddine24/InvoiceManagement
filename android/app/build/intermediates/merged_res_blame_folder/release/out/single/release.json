@@ -1,0 +1,210 @@
+[
+    {
+        "merged": "com.invoicemanagement.app-merged_res-39:/mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "com.invoicemanagement.app-main-40:/mipmap-xxxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.invoicemanagement.app-merged_res-39:/mipmap-xxhdpi_ic_launcher_foreground.png.flat",
+        "source": "com.invoicemanagement.app-main-40:/mipmap-xxhdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-merged_res-39:\\mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-main-40:\\mipmap-xxhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-merged_res-39:\\drawable-mdpi_assets_leftarrow.png.flat",
+        "source": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-res-34:\\drawable-mdpi\\assets_leftarrow.png"
+    },
+    {
+        "merged": "com.invoicemanagement.app-merged_res-39:/mipmap-xxxhdpi_ic_launcher_foreground.png.flat",
+        "source": "com.invoicemanagement.app-main-40:/mipmap-xxxhdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-merged_res-39:\\drawable-mdpi_assets_singleman.png.flat",
+        "source": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-res-34:\\drawable-mdpi\\assets_singleman.png"
+    },
+    {
+        "merged": "com.invoicemanagement.app-merged_res-39:/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "com.invoicemanagement.app-main-40:/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-merged_res-39:\\drawable-mdpi_assets_closeicon.png.flat",
+        "source": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-res-34:\\drawable-mdpi\\assets_closeicon.png"
+    },
+    {
+        "merged": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-merged_res-39:\\drawable-hdpi_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
+        "source": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-res-34:\\drawable-hdpi\\node_modules_reactnavigation_elements_src_assets_backicon.png"
+    },
+    {
+        "merged": "com.invoicemanagement.app-merged_res-39:/mipmap-mdpi_ic_launcher_foreground.png.flat",
+        "source": "com.invoicemanagement.app-main-40:/mipmap-mdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-merged_res-39:\\drawable-mdpi_assets_delete.png.flat",
+        "source": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-res-34:\\drawable-mdpi\\assets_delete.png"
+    },
+    {
+        "merged": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-merged_res-39:\\drawable-xhdpi_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
+        "source": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-res-34:\\drawable-xhdpi\\node_modules_reactnavigation_elements_src_assets_backicon.png"
+    },
+    {
+        "merged": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-merged_res-39:\\drawable-mdpi_assets_wallet.png.flat",
+        "source": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-res-34:\\drawable-mdpi\\assets_wallet.png"
+    },
+    {
+        "merged": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-merged_res-39:\\drawable-mdpi_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
+        "source": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-res-34:\\drawable-mdpi\\node_modules_reactnavigation_elements_src_assets_backicon.png"
+    },
+    {
+        "merged": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-merged_res-39:\\mipmap-mdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-main-40:\\mipmap-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-merged_res-39:\\drawable-mdpi_assets_fingerprint.png.flat",
+        "source": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-res-34:\\drawable-mdpi\\assets_fingerprint.png"
+    },
+    {
+        "merged": "com.invoicemanagement.app-merged_res-39:/mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "com.invoicemanagement.app-main-40:/mipmap-hdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-merged_res-39:\\drawable_rn_edit_text_material.xml.flat",
+        "source": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-main-40:\\drawable\\rn_edit_text_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-merged_res-39:\\mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-main-40:\\mipmap-xhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-merged_res-39:\\mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-main-40:\\mipmap-hdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-merged_res-39:\\mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-main-40:\\mipmap-xxxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-merged_res-39:\\drawable-mdpi_assets_addlogo.png.flat",
+        "source": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-res-34:\\drawable-mdpi\\assets_addlogo.png"
+    },
+    {
+        "merged": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-merged_res-39:\\drawable-mdpi_assets_edit.png.flat",
+        "source": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-res-34:\\drawable-mdpi\\assets_edit.png"
+    },
+    {
+        "merged": "com.invoicemanagement.app-merged_res-39:/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "com.invoicemanagement.app-main-40:/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.invoicemanagement.app-merged_res-39:/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "com.invoicemanagement.app-main-40:/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-merged_res-39:\\drawable-xxhdpi_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
+        "source": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-res-34:\\drawable-xxhdpi\\node_modules_reactnavigation_elements_src_assets_backicon.png"
+    },
+    {
+        "merged": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-merged_res-39:\\drawable-mdpi_node_modules_reactnativedropdownselectlist_assets_images_check.png.flat",
+        "source": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-res-34:\\drawable-mdpi\\node_modules_reactnativedropdownselectlist_assets_images_check.png"
+    },
+    {
+        "merged": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-merged_res-39:\\mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-main-40:\\mipmap-xxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-merged_res-39:\\drawable-mdpi_node_modules_reactnativedropdownselectlist_assets_images_chevron.png.flat",
+        "source": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-res-34:\\drawable-mdpi\\node_modules_reactnativedropdownselectlist_assets_images_chevron.png"
+    },
+    {
+        "merged": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-merged_res-39:\\mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-main-40:\\mipmap-xhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "com.invoicemanagement.app-merged_res-39:/mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "com.invoicemanagement.app-main-40:/mipmap-xhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-merged_res-39:\\mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-main-40:\\mipmap-xxxhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-merged_res-39:\\drawable-mdpi_assets_viewicon.png.flat",
+        "source": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-res-34:\\drawable-mdpi\\assets_viewicon.png"
+    },
+    {
+        "merged": "com.invoicemanagement.app-merged_res-39:/mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "com.invoicemanagement.app-main-40:/mipmap-mdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-merged_res-39:\\mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-main-40:\\mipmap-mdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "com.invoicemanagement.app-merged_res-39:/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "com.invoicemanagement.app-main-40:/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-merged_res-39:\\drawable-mdpi_assets_sharemoneydollar.png.flat",
+        "source": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-res-34:\\drawable-mdpi\\assets_sharemoneydollar.png"
+    },
+    {
+        "merged": "com.invoicemanagement.app-merged_res-39:/mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "com.invoicemanagement.app-main-40:/mipmap-xxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-merged_res-39:\\drawable-mdpi_node_modules_reactnavigation_elements_src_assets_backiconmask.png.flat",
+        "source": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-res-34:\\drawable-mdpi\\node_modules_reactnavigation_elements_src_assets_backiconmask.png"
+    },
+    {
+        "merged": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-merged_res-39:\\drawable-xxxhdpi_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
+        "source": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-res-34:\\drawable-xxxhdpi\\node_modules_reactnavigation_elements_src_assets_backicon.png"
+    },
+    {
+        "merged": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-merged_res-39:\\drawable-mdpi_node_modules_reactnativedropdownselectlist_assets_images_search.png.flat",
+        "source": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-res-34:\\drawable-mdpi\\node_modules_reactnativedropdownselectlist_assets_images_search.png"
+    },
+    {
+        "merged": "com.invoicemanagement.app-merged_res-39:/mipmap-xhdpi_ic_launcher_foreground.png.flat",
+        "source": "com.invoicemanagement.app-main-40:/mipmap-xhdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-merged_res-39:\\drawable-mdpi_assets_humbergermenu.png.flat",
+        "source": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-res-34:\\drawable-mdpi\\assets_humbergermenu.png"
+    },
+    {
+        "merged": "com.invoicemanagement.app-merged_res-39:/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "com.invoicemanagement.app-main-40:/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-merged_res-39:\\drawable-mdpi_assets_folder.png.flat",
+        "source": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-res-34:\\drawable-mdpi\\assets_folder.png"
+    },
+    {
+        "merged": "com.invoicemanagement.app-merged_res-39:/mipmap-hdpi_ic_launcher_foreground.png.flat",
+        "source": "com.invoicemanagement.app-main-40:/mipmap-hdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-merged_res-39:\\mipmap-hdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-main-40:\\mipmap-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-merged_res-39:\\drawable-mdpi_assets_userlogo.png.flat",
+        "source": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-res-34:\\drawable-mdpi\\assets_userlogo.png"
+    },
+    {
+        "merged": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-merged_res-39:\\drawable-mdpi_assets_categories.png.flat",
+        "source": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-res-34:\\drawable-mdpi\\assets_categories.png"
+    },
+    {
+        "merged": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-merged_res-39:\\drawable-mdpi_node_modules_reactnativedropdownselectlist_assets_images_close.png.flat",
+        "source": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-res-34:\\drawable-mdpi\\node_modules_reactnativedropdownselectlist_assets_images_close.png"
+    },
+    {
+        "merged": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-merged_res-39:\\drawable-mdpi_assets_rightarrow.png.flat",
+        "source": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-res-34:\\drawable-mdpi\\assets_rightarrow.png"
+    },
+    {
+        "merged": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-merged_res-39:\\drawable-mdpi_assets_setting.png.flat",
+        "source": "C:\\Users\\khair\\.gradle\\daemon\\8.3\\com.invoicemanagement.app-res-34:\\drawable-mdpi\\assets_setting.png"
+    }
+]

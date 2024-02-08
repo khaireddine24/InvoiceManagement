@@ -1,0 +1,199 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.invoicemanagement"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+9        android:targetSdkVersion="34" />
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->C:\Users\khair\Desktop\ReactNative\InvoiceManagement\android\app\src\main\AndroidManifest.xml:3:5-67
+11-->C:\Users\khair\Desktop\ReactNative\InvoiceManagement\android\app\src\main\AndroidManifest.xml:3:22-64
+12    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+12-->C:\Users\khair\Desktop\ReactNative\InvoiceManagement\android\app\src\main\AndroidManifest.xml:4:5-81
+12-->C:\Users\khair\Desktop\ReactNative\InvoiceManagement\android\app\src\main\AndroidManifest.xml:4:22-78
+13    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
+13-->C:\Users\khair\Desktop\ReactNative\InvoiceManagement\android\app\src\main\AndroidManifest.xml:5:5-74
+13-->C:\Users\khair\Desktop\ReactNative\InvoiceManagement\android\app\src\main\AndroidManifest.xml:5:22-71
+14    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+14-->[:react-native-biometrics] C:\Users\khair\Desktop\ReactNative\InvoiceManagement\node_modules\react-native-biometrics\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:7:5-72
+14-->[:react-native-biometrics] C:\Users\khair\Desktop\ReactNative\InvoiceManagement\node_modules\react-native-biometrics\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:7:22-69
+15    <!--
+16         Required to keep CPU alive while downloading files
+17        (NOT to keep screen awake)
+18    -->
+19    <uses-permission android:name="android.permission.WAKE_LOCK" />
+19-->[:react-native-blob-util] C:\Users\khair\Desktop\ReactNative\InvoiceManagement\node_modules\react-native-blob-util\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:14:5-68
+19-->[:react-native-blob-util] C:\Users\khair\Desktop\ReactNative\InvoiceManagement\node_modules\react-native-blob-util\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:14:22-65
+20    <!--
+21         Required to poll the state of the network connection
+22        and respond to changes
+23    -->
+24    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- Required to check whether Wi-Fi is enabled -->
+24-->[:react-native-blob-util] C:\Users\khair\Desktop\ReactNative\InvoiceManagement\node_modules\react-native-blob-util\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:20:5-79
+24-->[:react-native-blob-util] C:\Users\khair\Desktop\ReactNative\InvoiceManagement\node_modules\react-native-blob-util\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:20:22-76
+25    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- Required to read and write the expansion files on shared storage for Android 11 -->
+25-->[:react-native-blob-util] C:\Users\khair\Desktop\ReactNative\InvoiceManagement\node_modules\react-native-blob-util\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:23:5-76
+25-->[:react-native-blob-util] C:\Users\khair\Desktop\ReactNative\InvoiceManagement\node_modules\react-native-blob-util\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:23:22-73
+26    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- Required to to download files without a notification -->
+26-->[:react-native-blob-util] C:\Users\khair\Desktop\ReactNative\InvoiceManagement\node_modules\react-native-blob-util\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:29:5-80
+26-->[:react-native-blob-util] C:\Users\khair\Desktop\ReactNative\InvoiceManagement\node_modules\react-native-blob-util\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:29:22-77
+27    <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
+27-->[:react-native-blob-util] C:\Users\khair\Desktop\ReactNative\InvoiceManagement\node_modules\react-native-blob-util\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:32:5-88
+27-->[:react-native-blob-util] C:\Users\khair\Desktop\ReactNative\InvoiceManagement\node_modules\react-native-blob-util\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:32:22-85
+28
+29    <queries>
+29-->[:react-native-image-crop-picker] C:\Users\khair\Desktop\ReactNative\InvoiceManagement\node_modules\react-native-image-crop-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:7:5-11:15
+30        <intent>
+30-->[:react-native-image-crop-picker] C:\Users\khair\Desktop\ReactNative\InvoiceManagement\node_modules\react-native-image-crop-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:8:9-10:18
+31            <action android:name="android.media.action.IMAGE_CAPTURE" />
+31-->[:react-native-image-crop-picker] C:\Users\khair\Desktop\ReactNative\InvoiceManagement\node_modules\react-native-image-crop-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:9:13-73
+31-->[:react-native-image-crop-picker] C:\Users\khair\Desktop\ReactNative\InvoiceManagement\node_modules\react-native-image-crop-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:9:21-70
+32        </intent>
+33    </queries>
+34    <!--
+35    This manifest file is used only by Gradle to configure debug-only capabilities
+36    for React Native Apps.
+37    -->
+38    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+38-->[com.facebook.react:react-android:0.73.2] C:\Users\khair\.gradle\caches\transforms-3\d10d040f6dc36d35e250d48d5ebb15bd\transformed\jetified-react-android-0.73.2-debug\AndroidManifest.xml:16:5-78
+38-->[com.facebook.react:react-android:0.73.2] C:\Users\khair\.gradle\caches\transforms-3\d10d040f6dc36d35e250d48d5ebb15bd\transformed\jetified-react-android-0.73.2-debug\AndroidManifest.xml:16:22-75
+39
+40    <permission
+40-->[androidx.core:core:1.9.0] C:\Users\khair\.gradle\caches\transforms-3\13659b94c66de92d98d7f8af61234b95\transformed\core-1.9.0\AndroidManifest.xml:22:5-24:47
+41        android:name="com.invoicemanagement.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+41-->[androidx.core:core:1.9.0] C:\Users\khair\.gradle\caches\transforms-3\13659b94c66de92d98d7f8af61234b95\transformed\core-1.9.0\AndroidManifest.xml:23:9-81
+42        android:protectionLevel="signature" />
+42-->[androidx.core:core:1.9.0] C:\Users\khair\.gradle\caches\transforms-3\13659b94c66de92d98d7f8af61234b95\transformed\core-1.9.0\AndroidManifest.xml:24:9-44
+43
+44    <uses-permission android:name="com.invoicemanagement.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+44-->[androidx.core:core:1.9.0] C:\Users\khair\.gradle\caches\transforms-3\13659b94c66de92d98d7f8af61234b95\transformed\core-1.9.0\AndroidManifest.xml:26:5-97
+44-->[androidx.core:core:1.9.0] C:\Users\khair\.gradle\caches\transforms-3\13659b94c66de92d98d7f8af61234b95\transformed\core-1.9.0\AndroidManifest.xml:26:22-94
+45
+46    <application
+46-->C:\Users\khair\Desktop\ReactNative\InvoiceManagement\android\app\src\main\AndroidManifest.xml:6:5-25:19
+47        android:name="com.invoicemanagement.MainApplication"
+47-->C:\Users\khair\Desktop\ReactNative\InvoiceManagement\android\app\src\main\AndroidManifest.xml:7:7-38
+48        android:allowBackup="false"
+48-->C:\Users\khair\Desktop\ReactNative\InvoiceManagement\android\app\src\main\AndroidManifest.xml:11:7-34
+49        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+49-->[androidx.core:core:1.9.0] C:\Users\khair\.gradle\caches\transforms-3\13659b94c66de92d98d7f8af61234b95\transformed\core-1.9.0\AndroidManifest.xml:28:18-86
+50        android:debuggable="true"
+51        android:extractNativeLibs="true"
+52        android:icon="@mipmap/ic_launcher"
+52-->C:\Users\khair\Desktop\ReactNative\InvoiceManagement\android\app\src\main\AndroidManifest.xml:9:7-41
+53        android:label="@string/app_name"
+53-->C:\Users\khair\Desktop\ReactNative\InvoiceManagement\android\app\src\main\AndroidManifest.xml:8:7-39
+54        android:roundIcon="@mipmap/ic_launcher_round"
+54-->C:\Users\khair\Desktop\ReactNative\InvoiceManagement\android\app\src\main\AndroidManifest.xml:10:7-52
+55        android:theme="@style/AppTheme"
+55-->C:\Users\khair\Desktop\ReactNative\InvoiceManagement\android\app\src\main\AndroidManifest.xml:12:7-38
+56        android:usesCleartextTraffic="true" >
+56-->C:\Users\khair\Desktop\ReactNative\InvoiceManagement\android\app\src\debug\AndroidManifest.xml:6:9-44
+57        <activity
+57-->C:\Users\khair\Desktop\ReactNative\InvoiceManagement\android\app\src\main\AndroidManifest.xml:13:7-24:18
+58            android:name="com.invoicemanagement.MainActivity"
+58-->C:\Users\khair\Desktop\ReactNative\InvoiceManagement\android\app\src\main\AndroidManifest.xml:14:9-37
+59            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
+59-->C:\Users\khair\Desktop\ReactNative\InvoiceManagement\android\app\src\main\AndroidManifest.xml:16:9-118
+60            android:exported="true"
+60-->C:\Users\khair\Desktop\ReactNative\InvoiceManagement\android\app\src\main\AndroidManifest.xml:19:9-32
+61            android:label="@string/app_name"
+61-->C:\Users\khair\Desktop\ReactNative\InvoiceManagement\android\app\src\main\AndroidManifest.xml:15:9-41
+62            android:launchMode="singleTask"
+62-->C:\Users\khair\Desktop\ReactNative\InvoiceManagement\android\app\src\main\AndroidManifest.xml:17:9-40
+63            android:windowSoftInputMode="adjustResize" >
+63-->C:\Users\khair\Desktop\ReactNative\InvoiceManagement\android\app\src\main\AndroidManifest.xml:18:9-51
+64            <intent-filter>
+64-->C:\Users\khair\Desktop\ReactNative\InvoiceManagement\android\app\src\main\AndroidManifest.xml:20:9-23:25
+65                <action android:name="android.intent.action.MAIN" />
+65-->C:\Users\khair\Desktop\ReactNative\InvoiceManagement\android\app\src\main\AndroidManifest.xml:21:13-65
+65-->C:\Users\khair\Desktop\ReactNative\InvoiceManagement\android\app\src\main\AndroidManifest.xml:21:21-62
+66
+67                <category android:name="android.intent.category.LAUNCHER" />
+67-->C:\Users\khair\Desktop\ReactNative\InvoiceManagement\android\app\src\main\AndroidManifest.xml:22:13-73
+67-->C:\Users\khair\Desktop\ReactNative\InvoiceManagement\android\app\src\main\AndroidManifest.xml:22:23-70
+68            </intent-filter>
+69        </activity>
+70
+71        <provider
+71-->[:react-native-blob-util] C:\Users\khair\Desktop\ReactNative\InvoiceManagement\node_modules\react-native-blob-util\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:35:9-43:20
+72            android:name="com.ReactNativeBlobUtil.Utils.FileProvider"
+72-->[:react-native-blob-util] C:\Users\khair\Desktop\ReactNative\InvoiceManagement\node_modules\react-native-blob-util\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:36:13-70
+73            android:authorities="com.invoicemanagement.provider"
+73-->[:react-native-blob-util] C:\Users\khair\Desktop\ReactNative\InvoiceManagement\node_modules\react-native-blob-util\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:37:13-60
+74            android:exported="false"
+74-->[:react-native-blob-util] C:\Users\khair\Desktop\ReactNative\InvoiceManagement\node_modules\react-native-blob-util\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:38:13-37
+75            android:grantUriPermissions="true" >
+75-->[:react-native-blob-util] C:\Users\khair\Desktop\ReactNative\InvoiceManagement\node_modules\react-native-blob-util\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:39:13-47
+76            <meta-data
+76-->[:react-native-blob-util] C:\Users\khair\Desktop\ReactNative\InvoiceManagement\node_modules\react-native-blob-util\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:40:13-42:58
+77                android:name="android.support.FILE_PROVIDER_PATHS"
+77-->[:react-native-blob-util] C:\Users\khair\Desktop\ReactNative\InvoiceManagement\node_modules\react-native-blob-util\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:41:17-67
+78                android:resource="@xml/provider_paths" />
+78-->[:react-native-blob-util] C:\Users\khair\Desktop\ReactNative\InvoiceManagement\node_modules\react-native-blob-util\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:42:17-55
+79        </provider>
+80        <provider
+80-->[:react-native-image-crop-picker] C:\Users\khair\Desktop\ReactNative\InvoiceManagement\node_modules\react-native-image-crop-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:16:9-24:20
+81            android:name="com.reactnative.ivpusic.imagepicker.IvpusicImagePickerFileProvider"
+81-->[:react-native-image-crop-picker] C:\Users\khair\Desktop\ReactNative\InvoiceManagement\node_modules\react-native-image-crop-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:17:13-94
+82            android:authorities="com.invoicemanagement.provider"
+82-->[:react-native-image-crop-picker] C:\Users\khair\Desktop\ReactNative\InvoiceManagement\node_modules\react-native-image-crop-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:18:13-60
+83            android:exported="false"
+83-->[:react-native-image-crop-picker] C:\Users\khair\Desktop\ReactNative\InvoiceManagement\node_modules\react-native-image-crop-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:19:13-37
+84            android:grantUriPermissions="true" >
+84-->[:react-native-image-crop-picker] C:\Users\khair\Desktop\ReactNative\InvoiceManagement\node_modules\react-native-image-crop-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:20:13-47
+85            <meta-data
+85-->[:react-native-blob-util] C:\Users\khair\Desktop\ReactNative\InvoiceManagement\node_modules\react-native-blob-util\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:40:13-42:58
+86                android:name="android.support.FILE_PROVIDER_PATHS"
+86-->[:react-native-blob-util] C:\Users\khair\Desktop\ReactNative\InvoiceManagement\node_modules\react-native-blob-util\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:41:17-67
+87                android:resource="@xml/ivpusic_imagepicker_provider_paths" />
+87-->[:react-native-blob-util] C:\Users\khair\Desktop\ReactNative\InvoiceManagement\node_modules\react-native-blob-util\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:42:17-55
+88        </provider>
+89
+90        <activity
+90-->[:react-native-image-crop-picker] C:\Users\khair\Desktop\ReactNative\InvoiceManagement\node_modules\react-native-image-crop-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:26:9-28:72
+91            android:name="com.yalantis.ucrop.UCropActivity"
+91-->[:react-native-image-crop-picker] C:\Users\khair\Desktop\ReactNative\InvoiceManagement\node_modules\react-native-image-crop-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:27:13-60
+92            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+92-->[:react-native-image-crop-picker] C:\Users\khair\Desktop\ReactNative\InvoiceManagement\node_modules\react-native-image-crop-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:28:13-69
+93        <activity
+93-->[com.facebook.react:react-android:0.73.2] C:\Users\khair\.gradle\caches\transforms-3\d10d040f6dc36d35e250d48d5ebb15bd\transformed\jetified-react-android-0.73.2-debug\AndroidManifest.xml:19:9-21:40
+94            android:name="com.facebook.react.devsupport.DevSettingsActivity"
+94-->[com.facebook.react:react-android:0.73.2] C:\Users\khair\.gradle\caches\transforms-3\d10d040f6dc36d35e250d48d5ebb15bd\transformed\jetified-react-android-0.73.2-debug\AndroidManifest.xml:20:13-77
+95            android:exported="false" />
+95-->[com.facebook.react:react-android:0.73.2] C:\Users\khair\.gradle\caches\transforms-3\d10d040f6dc36d35e250d48d5ebb15bd\transformed\jetified-react-android-0.73.2-debug\AndroidManifest.xml:21:13-37
+96
+97        <provider
+97-->[androidx.emoji2:emoji2:1.2.0] C:\Users\khair\.gradle\caches\transforms-3\faa3592d2fc203d6c74b9a5f601058a1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+98            android:name="androidx.startup.InitializationProvider"
+98-->[androidx.emoji2:emoji2:1.2.0] C:\Users\khair\.gradle\caches\transforms-3\faa3592d2fc203d6c74b9a5f601058a1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:25:13-67
+99            android:authorities="com.invoicemanagement.androidx-startup"
+99-->[androidx.emoji2:emoji2:1.2.0] C:\Users\khair\.gradle\caches\transforms-3\faa3592d2fc203d6c74b9a5f601058a1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:26:13-68
+100            android:exported="false" >
+100-->[androidx.emoji2:emoji2:1.2.0] C:\Users\khair\.gradle\caches\transforms-3\faa3592d2fc203d6c74b9a5f601058a1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:27:13-37
+101            <meta-data
+101-->[androidx.emoji2:emoji2:1.2.0] C:\Users\khair\.gradle\caches\transforms-3\faa3592d2fc203d6c74b9a5f601058a1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+102                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+102-->[androidx.emoji2:emoji2:1.2.0] C:\Users\khair\.gradle\caches\transforms-3\faa3592d2fc203d6c74b9a5f601058a1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:30:17-75
+103                android:value="androidx.startup" />
+103-->[androidx.emoji2:emoji2:1.2.0] C:\Users\khair\.gradle\caches\transforms-3\faa3592d2fc203d6c74b9a5f601058a1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:31:17-49
+104            <meta-data
+104-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\khair\.gradle\caches\transforms-3\71b91ea8216105cda74b0317da307340\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:31:13-33:52
+105                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+105-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\khair\.gradle\caches\transforms-3\71b91ea8216105cda74b0317da307340\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:32:17-78
+106                android:value="androidx.startup" />
+106-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\khair\.gradle\caches\transforms-3\71b91ea8216105cda74b0317da307340\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:33:17-49
+107        </provider>
+108
+109        <meta-data
+109-->[com.facebook.soloader:soloader:0.10.5] C:\Users\khair\.gradle\caches\transforms-3\03d018e18e7118763cc731de8f689ba0\transformed\jetified-soloader-0.10.5\AndroidManifest.xml:12:9-14:37
+110            android:name="com.facebook.soloader.enabled"
+110-->[com.facebook.soloader:soloader:0.10.5] C:\Users\khair\.gradle\caches\transforms-3\03d018e18e7118763cc731de8f689ba0\transformed\jetified-soloader-0.10.5\AndroidManifest.xml:13:13-57
+111            android:value="false" />
+111-->[com.facebook.soloader:soloader:0.10.5] C:\Users\khair\.gradle\caches\transforms-3\03d018e18e7118763cc731de8f689ba0\transformed\jetified-soloader-0.10.5\AndroidManifest.xml:14:13-34
+112    </application>
+113
+114</manifest>
