@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, createContext } from 'react';
 import { Image, StyleSheet, Text, View, TouchableOpacity, SafeAreaView, ScrollView, DrawerLayoutAndroid, TextInput, Modal, Button, RefreshControl,ToastAndroid, Platform } from 'react-native';
 import { SelectList } from 'react-native-dropdown-select-list';
 import IncomesList from './IncomesList';
@@ -6,6 +6,7 @@ import Drawer from './Drawer';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import DocumentPicker from 'react-native-document-picker';
 import Database from '../Database';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 interface DataItem {
   idInc:any;
@@ -64,7 +65,6 @@ const Incomes = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   let MyPath:any[]=[]
   const [refreshing, setRefreshing] = React.useState(false);
-
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
     setTimeout(() => {
@@ -158,24 +158,24 @@ const Incomes = () => {
     }
   };
   
-  /**const dropIncomesTable = async () => {
-    try {
-      await db.transaction(async (txn) => {
-        txn.executeSql(
-          `DROP TABLE IF EXISTS incomes;`,
-          [],
-          (tx, res) => {
-            console.log('Table incomes dropped successfully');
-          },
-          (error) => {
-            console.log('Error dropping table incomes ' + error);
-          }
-        );
-      });
-    } catch (error) {
-      console.error('Error dropping table incomes: ', error);
-    }
-  };**/
+  // const dropIncomesTable = async () => {
+  //   try {
+  //     await db.transaction(async (txn) => {
+  //       txn.executeSql(
+  //         `DROP TABLE IF EXISTS incomes;`,
+  //         [],
+  //         (tx, res) => {
+  //           console.log('Table incomes dropped successfully');
+  //         },
+  //         (error) => {
+  //           console.log('Error dropping table incomes ' + error);
+  //         }
+  //       );
+  //     });
+  //   } catch (error) {
+  //     console.error('Error dropping table incomes: ', error);
+  //   }
+  // };
 
   const showToastWithGravity = (text:string) => {
     ToastAndroid.showWithGravity(
@@ -237,7 +237,6 @@ const Incomes = () => {
               showToastWithGravity('Income Added Successfully!');
               displayIncomesTable();
             } catch (error) {
-              console.error('Error fetching category data: ', error);
               showToastWithGravity('Failed to add income');
             }
           } else {
@@ -246,11 +245,9 @@ const Incomes = () => {
         });
       });
     } catch (error) {
-      console.error('Error inserting income: ', error);
       showToastWithGravity('Failed to add income');
     }
   };
-  
   
   const displayCategoriesTable = async (id: any): Promise<void> => {
     try {
@@ -325,7 +322,6 @@ const Incomes = () => {
       console.error('Error displaying welcome table: ', error);
     }
   };
-  
 
   const AddPDF = async () => {
     try {
@@ -337,7 +333,6 @@ const Incomes = () => {
         const uri = docs[0]?.fileCopyUri || '';
         MyPath.push(uri);
         let ind=MyPath.indexOf(uri);
-        //console.log(ind);
         setPathPdf(uri);
         showToastWithGravity('PDF picked succesfully');
       }
@@ -608,6 +603,7 @@ const styles = StyleSheet.create({
     width: 35,
     height: 35,
   },
+
   iconFolder: {
     width: 25,
     height: 25,
@@ -617,25 +613,21 @@ const styles = StyleSheet.create({
   ShareMoneyDollar: {
     width: 30,
     height: 30,
-
     marginLeft: '17%',
     marginRight: '4%',
   },
   background: {
-    height: 900,
+    height: hp('100%'),
     backgroundColor: 'transparent',
   },
-  image: {
-    width: 120,
-    height: 120,
-    margin: '5%',
-  },
+
   button: {
+    marginLeft:'5%',
     justifyContent: 'center',
     flexDirection: 'row',
     width: '45%',
     height: 55,
-    marginTop: '1%',
+    marginTop: '15%',
     backgroundColor: '#BD1839',
     borderRadius: 30,
     shadowColor: '#000',
@@ -647,7 +639,6 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
   },
-
 });
 
 export default Incomes;

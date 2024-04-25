@@ -1,10 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import {
-  Image,
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
+import {Image,StyleSheet,Text,View,TouchableOpacity,
   SafeAreaView,
   ScrollView,
   DrawerLayoutAndroid,
@@ -17,6 +12,7 @@ import Drawer from './Drawer';
 import CategoriesList from './CategoriesList';
 import ImagePicker from 'react-native-image-crop-picker';
 import Database from '../Database';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 interface DataItem {
   idCat : any; 
@@ -45,7 +41,6 @@ const Categories = () => {
   useEffect(() => {
     displayCategoriesTable();
   }, []);
-
 
   useEffect(() => {
     //dropCategoriesTable();
@@ -81,24 +76,24 @@ const Categories = () => {
     });
   }, []);
 
-  /*const dropCategoriesTable = async () => {
-    try {
-      await db.transaction(async (txn) => {
-        txn.executeSql(
-          `DROP TABLE IF EXISTS categories;`,
-          [],
-          (tx, res) => {
-            console.log('Table categories dropped successfully');
-          },
-          (error) => {
-            console.log('Error dropping table categories ' + error);
-          }
-        );
-      });
-    } catch (error) {
-      console.error('Error dropping table categories: ', error);
-    }
-  };*/
+  // const dropCategoriesTable = async () => {
+  //   try {
+  //     await db.transaction(async (txn) => {
+  //       txn.executeSql(
+  //         `DROP TABLE IF EXISTS categories;`,
+  //         [],
+  //         (tx, res) => {
+  //           console.log('Table categories dropped successfully');
+  //         },
+  //         (error) => {
+  //           console.log('Error dropping table categories ' + error);
+  //         }
+  //       );
+  //     });
+  //   } catch (error) {
+  //     console.error('Error dropping table categories: ', error);
+  //   }
+  // };
 
   const showToastWithGravity = (text: string) => {
     ToastAndroid.showWithGravity(
@@ -215,7 +210,6 @@ const Categories = () => {
         drawerPosition="left"
         onDrawerStateChanged={handleDrawerStateChange}
         renderNavigationView={() => <Drawer closeDrawer={closeDrawer} />}>
-
         <View style={{ backgroundColor: '#BD1839', justifyContent: 'center', borderBottomLeftRadius: 25, borderBottomRightRadius: 25, height: '11%', alignItems: 'center' }}>
           <SafeAreaView style={{ alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between', height: '60%', width: '95%', marginBottom: '2%', marginLeft: '5%' }}>
             <TouchableOpacity onPress={toggleDrawer}>
@@ -358,20 +352,20 @@ const styles = StyleSheet.create({
     categoryIcon: {
       width: 25,
       height: 25,
-
       marginLeft: '17%',
       marginRight: '4%',
     },
     background: {
-      height: 900,
-      backgroundColor: 'white',
+      height: hp('100%'),
+      backgroundColor: 'transparent',
     },
     button: {
+      marginLeft:'5%',
       justifyContent: 'center',
       flexDirection: 'row',
       width: '45%',
       height: 55,
-      marginTop: '1%',
+      marginTop: '15%',
       backgroundColor: '#BD1839',
       borderRadius: 30,
       shadowColor: '#000',
@@ -384,5 +378,4 @@ const styles = StyleSheet.create({
       elevation: 5,
     },
   });
-
 export default Categories

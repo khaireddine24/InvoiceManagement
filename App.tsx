@@ -56,8 +56,9 @@ function App() {
     <SafeAreaProvider>
       <NavigationContainer>
         <Stack.Navigator initialRouteName={initialRouteName} screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="WelcomePage" component={WelcomePage} />
+          
+          {/* <Stack.Screen name="Login" component={Login} /> */}
+          <Stack.Screen name="WelcomePage" component={WelcomePage} /> 
           <Stack.Screen name="Expenses" component={Expenses} />
           <Stack.Screen name="Incomes" component={Incomes} />
           <Stack.Screen name="Settings" component={Settings} />

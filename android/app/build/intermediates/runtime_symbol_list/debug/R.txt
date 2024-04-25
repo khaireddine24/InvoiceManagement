@@ -3851,7 +3851,8 @@ int layout ucrop_layout_scale_wheel 0x7f0c0076
 int layout ucrop_view 0x7f0c0077
 int menu ucrop_menu_activity 0x7f0e0000
 int mipmap ic_launcher 0x7f0f0000
-int mipmap ic_launcher_round 0x7f0f0001
+int mipmap ic_launcher_foreground 0x7f0f0001
+int mipmap ic_launcher_round 0x7f0f0002
 int plurals mtrl_badge_content_description 0x7f100000
 int string abc_action_bar_home_description 0x7f110000
 int string abc_action_bar_up_description 0x7f110001

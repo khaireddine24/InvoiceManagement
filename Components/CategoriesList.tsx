@@ -158,59 +158,79 @@ const CategoriesList: React.FC<{ categoriesData: DataItem[] }> = ({ categoriesDa
   };
 
   return (
-    CategoriesData.map((category: any, index: any) => (
-      <View key={index} style={styles.cardContainer}>
-        <View style={styles.cardHeader}>
-          <Text style={styles.cardHeaderText}>Category</Text>
-          <Image source={{ uri: category.categoryImage }} style={styles.SoftHardicons} />
-        </View>
-
-        <View style={styles.cardContent}>
-          <View style={styles.cardContentColumn}>
-            <Text style={styles.cardContentText}>Name : {category.categoryName}</Text>
-          </View>
-
-          <View style={styles.cardContentRow}>
-            <TouchableOpacity onPress={() => handleEditCategory(index)}>
-              <Image source={require('../assets/edit.png')} style={styles.icons} />
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => handleDeleteCategory(category.idCat,index)} style={{ marginLeft: '2%' }}>
-              <Image source={require('../assets/delete.png')} style={styles.iconDelete} />
-            </TouchableOpacity>
-          </View>
-        </View>
-
-        {/* Edit Modal */}
-        <Modal visible={editModalVisible} transparent animationType="slide">
-          <View style={styles.modalContainer}>
-            <View style={styles.modalContent}>
-              <Text style={styles.modalHeaderText}>Edit Category</Text>
-              <TextInput
-                placeholder="Category Name"
-                value={editedCategoryName}
-                onChangeText={(text: any) => setEditedCategoryName(text)}
-                style={styles.input}
-              />
-              <TouchableOpacity onPress={handleButtonImportSelect} style={styles.importButton}>
-                <Text style={styles.importButtonText}>Pick Icon</Text>
-              </TouchableOpacity>
-
-              <View style={styles.modalButtons}>
-                <TouchableOpacity style={styles.button} onPress={handleSaveEditCategory}>
-                  <Text style={styles.buttonText}>Save</Text>
+    <View>
+      {CategoriesData.length > 0 ? (
+        CategoriesData.map((category: any, index: any) => (
+          <View key={index} style={styles.cardContainer}>
+            <View style={styles.cardHeader}>
+              <Text style={styles.cardHeaderText}>Category</Text>
+              <Image source={{ uri: category.categoryImage }} style={styles.SoftHardicons} />
+            </View>
+  
+            <View style={styles.cardContent}>
+              <View style={styles.cardContentColumn}>
+                <Text style={styles.cardContentText}>Name : {category.categoryName}</Text>
+              </View>
+  
+              <View style={styles.cardContentRow}>
+                <TouchableOpacity onPress={() => handleEditCategory(index)}>
+                  <Image source={require('../assets/edit.png')} style={styles.icons} />
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.button} onPress={handleCancelEditCategory}>
-                  <Text style={styles.buttonText}>Cancel</Text>
+                <TouchableOpacity onPress={() => handleDeleteCategory(category.idCat, index)} style={{ marginLeft: '2%' }}>
+                  <Image source={require('../assets/delete.png')} style={styles.iconDelete} />
                 </TouchableOpacity>
               </View>
             </View>
+  
+            {/* Edit Modal */}
+            <Modal visible={editModalVisible} transparent animationType="slide">
+              <View style={styles.modalContainer}>
+                <View style={styles.modalContent}>
+                  <Text style={styles.modalHeaderText}>Edit Category</Text>
+                  <TextInput
+                    placeholder="Category Name"
+                    value={editedCategoryName}
+                    onChangeText={(text: any) => setEditedCategoryName(text)}
+                    style={styles.input}
+                  />
+                  <TouchableOpacity onPress={handleButtonImportSelect} style={styles.importButton}>
+                    <Text style={styles.importButtonText}>Pick Icon</Text>
+                  </TouchableOpacity>
+  
+                  <View style={styles.modalButtons}>
+                    <TouchableOpacity style={styles.button} onPress={handleSaveEditCategory}>
+                      <Text style={styles.buttonText}>Save</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.button} onPress={handleCancelEditCategory}>
+                      <Text style={styles.buttonText}>Cancel</Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              </View>
+            </Modal>
           </View>
-        </Modal>
-      </View>
-    ))
+        ))
+      ) : (
+        <View style={styles.noDataContainer}>
+          <Text style={styles.noDataText}>No data found</Text>
+        </View>
+      )}
+    </View>
   );
+  
 };
 const styles = StyleSheet.create({
+  noDataContainer: {
+    marginTop:'20%',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  noDataText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: 'gray',
+  },
   importButton:{
     textAlign:'center',
     width: '100%',

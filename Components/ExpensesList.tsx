@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Image,Text, Modal, TouchableOpacity, TextInput, Button, Platform, ToastAndroid } from 'react-native';
+import { StyleSheet, View, Image, Text, Modal, TouchableOpacity, TextInput, Button, Platform, ToastAndroid, SafeAreaView } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { convert } from 'react-native-pdf-to-image';
 import { SelectList } from 'react-native-dropdown-select-list';
 import DocumentPicker from 'react-native-document-picker';
-import { formatCurrency} from "react-native-format-currency";
+import { formatCurrency } from 'react-native-format-currency';
 import Database from '../Database';
-
+import axios from 'axios';
 
 interface DataItemExtreme {
-  idExp:any;
-  idCurr:any;
-  category:any;
+  idExp: any;
+  idCurr: any;
+  category: any;
   amount: string;
   dateExpense: string;
   pdfFile: string;
@@ -22,12 +22,12 @@ interface DataItemExtreme {
 }
 
 interface DataItemCategory2 {
-  key : string; 
+  key: string;
   value: string;
   cselected?: boolean;
-}
+}  
 
-const ExpensesList: React.FC<{expensesData: DataItemExtreme[];CategoryData: DataItemCategory2[];showButtons: boolean;selectedCurrency:any }> = ({expensesData,CategoryData,showButtons,selectedCurrency}) => {
+const ExpensesList: React.FC<{ expensesData: DataItemExtreme[]; CategoryData: DataItemCategory2[]; showButtons: boolean; selectedCurrency: any }> = ({ expensesData, CategoryData, showButtons, selectedCurrency }) => {
   const [CategoriesData2, setCategoriesData2] = useState<DataItemCategory2[]>([]);
   const [ExpensesData, setExpensesData] = useState<DataItemExtreme[]>([]);
   const [editModalVisible, setEditModalVisible] = useState<boolean>(false);
@@ -40,12 +40,38 @@ const ExpensesList: React.FC<{expensesData: DataItemExtreme[];CategoryData: Data
   const [isDatePickerVisible, setIsDatePickerVisible] = useState(false);
   const [showTimePicker, setShowTimePicker] = useState(false);
   const [editedPdf, setEditedPdf] = useState<string>('');
-  const [selectedIdCategory,setSelectedIdCategory]=useState<any>();
-  const [selectedIdCurrency,setSelectedIdCurrency]=useState<any>();
+  const [selectedIdCategory, setSelectedIdCategory] = useState<any>();
+  const [selectedIdCurrency, setSelectedIdCurrency] = useState<any>();
+  const [exchangeRates, setExchangeRates] = useState<any>({});
+  const [maincurrency, setmaincurrency] = useState<string>('');
 
-  let MyPath:any[]=[]
+  let MyPath: any[] = [];
   const db = Database();
 
+  const DefineMainCurrency = () => {
+    ExpensesData.forEach((expense: DataItemExtreme) => {
+      console.log("Expense mainCurrency:", expense.mainCurrency);
+      if (expense.mainCurrency && expense.mainCurrency !== '') {
+        setmaincurrency(expense.mainCurrency);
+        return;
+      }
+    });
+  };
+    
+  useEffect(() => {
+    DefineMainCurrency();
+  }, [ExpensesData]); 
+  
+  useEffect(() => {
+    if (maincurrency) {
+      fetchExchangeRates(); 
+    }
+  }, [maincurrency]); 
+
+  useEffect(() => {
+    setExpensesData(expensesData);
+  }, [expensesData]);
+  
   useEffect(() => {
     setCategoriesData2(CategoryData);
   }, [CategoryData]);
@@ -54,10 +80,45 @@ const ExpensesList: React.FC<{expensesData: DataItemExtreme[];CategoryData: Data
     setSelectedIdCurrency(selectedCurrency);
   }, [selectedCurrency]);
 
-  useEffect(() => {
-    setExpensesData(expensesData);
-  }, [expensesData]);
 
+  const fetchExchangeRates = async () => {
+    try {
+      const currencyUrls: {
+        [key: string]: string; 
+        GBP: string;
+        USD: string;
+        EUR: string;
+        default: string;
+    } = {
+        GBP: 'https://v6.exchangerate-api.com/v6/ffd4028a14d09abe8c6bf367/latest/GBP',
+        USD: 'https://v6.exchangerate-api.com/v6/ffd4028a14d09abe8c6bf367/latest/USD',
+        EUR: 'https://v6.exchangerate-api.com/v6/ffd4028a14d09abe8c6bf367/latest/EUR',
+        default: 'https://v6.exchangerate-api.com/v6/ffd4028a14d09abe8c6bf367/latest/TND'
+    };
+    console.log("Expense mainCurrency:",maincurrency);
+      const res = currencyUrls[maincurrency] || currencyUrls.default;
+      console.log("response :", res);
+      const API = await axios.get(res);
+      setExchangeRates(API.data.conversion_rates);
+    } catch (error) {
+      console.error('Error fetching exchange rates: ', error);
+    }
+  };
+  
+
+  const convertToOtherCurrencies = (amount: number, currency: string): string => {
+    const rate = exchangeRates[currency];
+    if (rate) {
+      const convertedAmount = amount * rate;
+      const amountString = convertedAmount.toString();
+      const commaIndex = amountString.indexOf('.');
+      const firstDigitAfterComma = amountString.substring(commaIndex + 1, commaIndex + 3);
+      const formattedAmount = amountString.substring(0, commaIndex + 1) + firstDigitAfterComma;
+      return formatCurrency({ amount: Number(formattedAmount), code: currency })[0].toString();
+    }  
+    return '';
+  };
+  
 
   const showToastWithGravity = (text: string) => {
     ToastAndroid.showWithGravity(
@@ -80,11 +141,10 @@ const ExpensesList: React.FC<{expensesData: DataItemExtreme[];CategoryData: Data
     }
   };
 
-  const handleDeleteExpense = (id:number,index: number) => {
+  const handleDeleteExpense = (id: number, index: number) => {
     const newExpenses = [...ExpensesData];
     newExpenses.splice(index, 1);
     setExpensesData(newExpenses);
-    //console.log('index = ', index);
     Delete(id);
     showToastWithGravity('Expense deleted successfully!');
   };
@@ -124,14 +184,12 @@ const ExpensesList: React.FC<{expensesData: DataItemExtreme[];CategoryData: Data
               pdfFile: editedPdf || expense.pdfFile,
               idCurr: selectedIdCurrency || expense.idCurr,
             };
-        
-            //console.log("Updated Expense:", updatedExpense);
             return updatedExpense;
           } else {
             return expense;
           }
         });
-  
+
         showToastWithGravity('Expense updated successfully!');
         setExpensesData(updatedExpenses);
         setEditModalVisible(false);
@@ -144,8 +202,8 @@ const ExpensesList: React.FC<{expensesData: DataItemExtreme[];CategoryData: Data
       }
     }
   };
-  
-  const fetchPdfImages = async (path:string) => {
+
+  const fetchPdfImages = async (path: string) => {
     try {
       const fixedPdfUri = path;
       const images = await convert(fixedPdfUri);
@@ -166,17 +224,16 @@ const ExpensesList: React.FC<{expensesData: DataItemExtreme[];CategoryData: Data
       if (docs?.length) {
         const uri = docs[0]?.fileCopyUri || '';
         MyPath.push(uri);
-        let ind=MyPath.indexOf(uri);
-        showToastWithGravity('PDF picked succesfully');
+        let ind = MyPath.indexOf(uri);
+        showToastWithGravity('PDF picked successfully');
         setEditedPdf(MyPath.join(";"));
       }
     } catch (e) {
       console.log(e);
     }
     return MyPath.join(";");
-
   };
-  
+
   const handleEditExpense = (index: number) => {
     setEditedExpense(ExpensesData[index]);
     setEditedAmount(ExpensesData[index].amount);
@@ -184,7 +241,7 @@ const ExpensesList: React.FC<{expensesData: DataItemExtreme[];CategoryData: Data
     setEditModalVisible(true);
   };
 
-  const handleViewPdf = (path:string) => {
+  const handleViewPdf = (path: string) => {
     setPdfModalVisible(true);
     fetchPdfImages(path);
   };
@@ -237,176 +294,207 @@ const ExpensesList: React.FC<{expensesData: DataItemExtreme[];CategoryData: Data
       setSelectedTime(selectedDate);
     }
   };
-  
 
   return (
-      ExpensesData.map((expense: any, index: any) => (
-        <View key={index} style={styles.cardContainer}>
-          <View style={styles.cardHeader}>
-            <View style={styles.headerText}>
-              <Text style={styles.cardHeaderText}>{expense.categoryName}</Text>
-            </View>
-            {showButtons && (
+    <View>
+      {ExpensesData.length > 0 ? (
+        ExpensesData.map((expense: any, index: any) => (
+          <View key={index} style={styles.cardContainer}>
+            <View style={styles.cardHeader}>
+              <View style={styles.headerText}>
+                <Text style={styles.cardHeaderText}>{expense.categoryName}</Text>
+              </View>
+              {showButtons && (
                 <TouchableOpacity onPress={() => handleViewPdf(expense.pdfFile)}>
                   <Image source={require('../assets/viewIcon.png')} style={styles.viewIcon} />
                 </TouchableOpacity>
-            )}
-            <Image source={{ uri: expense.categoryImage }} style={styles.SoftHardicons} />
-          </View>
-           
-          <View style={styles.cardContent}>
-            <View style={styles.cardContentColumn}>
-              <Text style={styles.cardContentText}>
-                Amount : {formatCurrency({ amount: Number(expense.amount), code: expense.mainCurrency }).splice(0, 1) +' '+ '('+
-                        formatCurrency({ amount: Number(expense.amount), code: expense.otherCurrencies.substring(0,3) }).splice(0, 1)+' '+'| '+ 
-                        formatCurrency({ amount: Number(expense.amount), code: expense.otherCurrencies.substring(4,7) }).splice(0, 1)+' '+'| '+
-                        formatCurrency({ amount: Number(expense.amount), code: expense.otherCurrencies.substring(8,11) }).splice(0, 1)+
-                        
-                        ')'
-                        }
-              </Text>
-              <Text style={styles.cardContentText}>DateTime : {expense.dateExpense}</Text>
-              <Text style={styles.cardContentText}>Currency : {expense.mainCurrency}</Text>
+              )}
+              <Image source={{ uri: expense.categoryImage }} style={styles.SoftHardicons} />
             </View>
-  
-            {showButtons && (
-              <View style={styles.cardContentRow}>
-                <TouchableOpacity onPress={() => handleEditExpense(index)}>
-                  <Image source={require('../assets/edit.png')} style={styles.icons} />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => handleDeleteExpense(expense.idExp, index)} style={{ marginLeft: '2%' }}>
-                  <Image source={require('../assets/delete.png')} style={styles.iconDelete} />
-                </TouchableOpacity>
+
+            <View style={styles.cardContent}>
+              <View style={styles.cardContentColumn}>
+                <Text style={styles.cardContentText}>
+                Amount : {formatCurrency({ amount: Number(expense.amount), code: expense.mainCurrency })[0]} {' ( '}
+                {expense.otherCurrencies.includes(',') ? (
+                  <>
+                    {expense.otherCurrencies.split(',').map((currency: any, index: any) => {
+                      const convertedAmount = convertToOtherCurrencies(Number(expense.amount), currency);
+                      return (
+                        <React.Fragment key={index}>
+                          {convertedAmount && `${convertedAmount} (${currency})`}
+                          {index !== expense.otherCurrencies.split(',').length - 1 && ' | '}
+                        </React.Fragment>
+                      );
+                    })}
+                  </>
+                ) : (
+                  <>
+                    {expense.otherCurrencies && convertToOtherCurrencies(Number(expense.amount), expense.otherCurrencies)} ({expense.otherCurrencies}) 
+                  </>
+                )} {' ) '}
+               </Text>
+
+                <Text style={styles.cardContentText}>DateTime : {expense.dateExpense}</Text>
+                <Text style={styles.cardContentText}>Currency : {expense.mainCurrency}</Text>
               </View>
-            )}
-          </View>
-          
-          {/* PDF Display */}
-          <Modal visible={pdfModalVisible} transparent animationType="slide">
-            
-            <View style={styles.modalContainer}>
-              {pdfImages.map((imgPath, imgIndex) => (
-                <View key={imgIndex} style={styles.imgContainer}>
-                  <Image style={styles.image} source={{ uri: `file://${imgPath}` }} />
-                </View>
-              ))}
-              <TouchableOpacity style={styles.closeButton} onPress={() => setPdfModalVisible(false)}>
-                <Text style={styles.closeButtonText}>Close</Text>
-              </TouchableOpacity>
-            </View>
-          </Modal>
-  
-          <Modal visible={editModalVisible} transparent animationType="slide">
-            <View style={styles.modalContainer}>
-              <View style={styles.modalContent}>
-                <Text style={{ color: 'black', fontWeight: 'bold', marginBottom: '20%', fontSize: 20, textAlign: 'center' }}>Edit expense</Text>
-                <TextInput
-                  placeholder="Amount"
-                  value={editedAmount}
-                  onChangeText={(text: any) => setEditedAmount(text)}
-                  keyboardType="numeric"
-                  style={{
-                    color:'white',
-                    paddingLeft: 15,
-                    height:44,
-                    backgroundColor: '#2196F5',
-                    borderRadius: 2,
-                    marginBottom: '5%',
-                    elevation: 5,
-                    shadowColor: '#000',
-                    shadowOffset: { width: 0, height: 2 },
-                    shadowOpacity: 0.3,
-                    shadowRadius: 3,
-                  }}
-                />
-  
-                <View style={{ marginBottom: 20,borderRadius:5 }}>
-                  <Button title={formatDate(selectedDate)} onPress={showDatePickerVisible} />
-                  {isDatePickerVisible && (
-                    <DateTimePicker value={selectedDate} mode="date" display="default" onChange={handleDateChange} />
-                  )}
-                </View>
-  
-                <View style={{ marginBottom: 20 }}>
-                  <Button title={formatTime(selectedTime)} onPress={() => showTimePickerHandler()} />
-                  {showTimePicker && (
-                    <DateTimePicker
-                      value={selectedTime}
-                      mode="time"
-                      is24Hour={true}
-                      display="default"
-                      onChange={handleTimeChange}
-                    />
-                  )}
-                </View>
-  
-                <SelectList
-                  data={CategoryData}
-                  save="key"
-                  placeholder='Category'
-                  setSelected={(key: any) => setSelectedIdCategory(key)}
-                  boxStyles={{
-                    borderRadius: 2,
-                    borderColor: '#2196F5',
-                    borderStyle: 'solid',
-                    backgroundColor: '#2196F5',
-                    shadowColor: '#000',
-                    shadowOffset: {
-                      width: 0,
-                      height: 2,
-                    },
-                    shadowOpacity: 0.25,
-                    shadowRadius: 3.84,
-                    elevation: 5,
-                    height: 44,
-                  }}
-                  inputStyles={{ color: 'white', fontWeight: 'bold', fontSize: 13, }}
-                  dropdownTextStyles={{ color: 'black', fontWeight: 'bold' }}
-                  badgeTextStyles={{ color: 'white', fontSize: 14 }}
-                  badgeStyles={{ backgroundColor: '#2196F5' }}
-                  labelStyles={{ color: 'black', fontWeight: 'bold' }}
-                  dropdownItemStyles={{
-                    backgroundColor: '#2196F5',
-                    marginHorizontal: 6
-                  }}
-                  dropdownStyles={{
-                    backgroundColor: '#2196F5',
-                    borderRadius: 8,
-                    borderColor: '#2196F5',
-                    shadowColor: '#000',
-                    shadowOffset: {
-                      width: 0,
-                      height: 2,
-                    },
-                    shadowOpacity: 0.25,
-                    shadowRadius: 8,
-                    elevation: 5
-                  }}
-                />
-  
-                <TouchableOpacity style={styles.button} onPress={EditPDF}>
-                  <Text style={styles.buttonText} >Pick PDF</Text>
-                </TouchableOpacity>
-  
-                <View style={{ flexDirection: 'row', width: '100%', height: '20%', alignItems: 'center', justifyContent: 'space-around' }}>
-                  <TouchableOpacity onPress={handleSaveEditExpense} style={styles.SaveCancel}>
-                    <Text style={styles.SaveCancelText} >Save</Text>
+
+              {showButtons && (
+                <View style={styles.cardContentRow}>
+                  <TouchableOpacity onPress={() => handleEditExpense(index)}>
+                    <Image source={require('../assets/edit.png')} style={styles.icons} />
                   </TouchableOpacity>
-                  <TouchableOpacity onPress={handleCancelEdit} style={styles.SaveCancel}>
-                    <Text style={styles.SaveCancelText} >Cancel</Text>
+                  <TouchableOpacity onPress={() => handleDeleteExpense(expense.idExp, index)} style={{ marginLeft: '2%' }}>
+                    <Image source={require('../assets/delete.png')} style={styles.iconDelete} />
                   </TouchableOpacity>
                 </View>
-              </View>
+              )}
             </View>
-            
-          </Modal>
+
+            {/* PDF Display */}
+            <Modal visible={pdfModalVisible} transparent animationType="slide">
+
+              <View style={styles.modalContainer}>
+                {pdfImages.map((imgPath, imgIndex) => (
+                  <View key={imgIndex} style={styles.imgContainer}>
+                    <Image style={styles.image} source={{ uri: `file://${imgPath}` }} />
+                  </View>
+                ))}
+                <TouchableOpacity style={styles.closeButton} onPress={() => setPdfModalVisible(false)}>
+                  <Text style={styles.closeButtonText}>Close</Text>
+                </TouchableOpacity>
+              </View>
+            </Modal>
+
+            <Modal visible={editModalVisible} transparent animationType="slide">
+              <View style={styles.modalContainer}>
+                <View style={styles.modalContent}>
+                  <Text style={{ color: 'black', fontWeight: 'bold', marginBottom: '20%', fontSize: 20, textAlign: 'center' }}>Edit expense</Text>
+                  <TextInput
+                    placeholder="Amount"
+                    value={editedAmount}
+                    onChangeText={(text: any) => setEditedAmount(text)}
+                    keyboardType="numeric"
+                    style={{
+                      color: 'white',
+                      paddingLeft: 15,
+                      height: 44,
+                      backgroundColor: '#2196F5',
+                      borderRadius: 2,
+                      marginBottom: '5%',
+                      elevation: 5,
+                      shadowColor: '#000',
+                      shadowOffset: { width: 0, height: 2 },
+                      shadowOpacity: 0.3,
+                      shadowRadius: 3,
+                    }}
+                  />
+
+                  <View style={{ marginBottom: 20, borderRadius: 5 }}>
+                    <Button title={formatDate(selectedDate)} onPress={showDatePickerVisible} />
+                    {isDatePickerVisible && (
+                      <DateTimePicker value={selectedDate} mode="date" display="default" onChange={handleDateChange} />
+                    )}
+                  </View>
+
+                  <View style={{ marginBottom: 20 }}>
+                    <Button title={formatTime(selectedTime)} onPress={() => showTimePickerHandler()} />
+                    {showTimePicker && (
+                      <DateTimePicker
+                        value={selectedTime}
+                        mode="time"
+                        is24Hour={true}
+                        display="default"
+                        onChange={handleTimeChange}
+                      />
+                    )}
+                  </View>
+
+                  <SelectList
+                    data={CategoryData}
+                    save="key"
+                    placeholder='Category'
+                    setSelected={(key: any) => setSelectedIdCategory(key)}
+                    boxStyles={{
+                      borderRadius: 2,
+                      borderColor: '#2196F5',
+                      borderStyle: 'solid',
+                      backgroundColor: '#2196F5',
+                      shadowColor: '#000',
+                      shadowOffset: {
+                        width: 0,
+                        height: 2,
+                      },
+                      shadowOpacity: 0.25,
+                      shadowRadius: 3.84,
+                      elevation: 5,
+                      height: 44,
+                    }}
+                    inputStyles={{ color: 'white', fontWeight: 'bold', fontSize: 13, }}
+                    dropdownTextStyles={{ color: 'black', fontWeight: 'bold' }}
+                    badgeTextStyles={{ color: 'white', fontSize: 14 }}
+                    badgeStyles={{ backgroundColor: '#2196F5' }}
+                    labelStyles={{ color: 'black', fontWeight: 'bold' }}
+                    dropdownItemStyles={{
+                      backgroundColor: '#2196F5',
+                      marginHorizontal: 6
+                    }}
+                    dropdownStyles={{
+                      backgroundColor: '#2196F5',
+                      borderRadius: 8,
+                      borderColor: '#2196F5',
+                      shadowColor: '#000',
+                      shadowOffset: {
+                        width: 0,
+                        height: 2,
+                      },
+                      shadowOpacity: 0.25,
+                      shadowRadius: 8,
+                      elevation: 5
+                    }}
+                  />
+
+                  <TouchableOpacity style={styles.button} onPress={EditPDF}>
+                    <Text style={styles.buttonText} >Pick PDF</Text>
+                  </TouchableOpacity>
+
+                  <View style={{ flexDirection: 'row', width: '100%', height: '20%', alignItems: 'center', justifyContent: 'space-around' }}>
+                    <TouchableOpacity onPress={handleSaveEditExpense} style={styles.SaveCancel}>
+                      <Text style={styles.SaveCancelText} >Save</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={handleCancelEdit} style={styles.SaveCancel}>
+                      <Text style={styles.SaveCancelText} >Cancel</Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              </View>
+
+            </Modal>
+          </View>
+
+        ))
+      ) : (
+        <View style={styles.noDataContainer}>
+          <Text style={styles.noDataText}>No data found</Text>
         </View>
-        
-      ))
-  );  
+      )}
+    </View>
+  );
+
 };
 
 const styles = StyleSheet.create({
+  noDataContainer: {
+    marginTop:'20%',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  noDataText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: 'gray',
+  },
   cardContainer: {
     backgroundColor:'white',
     width: '90%',

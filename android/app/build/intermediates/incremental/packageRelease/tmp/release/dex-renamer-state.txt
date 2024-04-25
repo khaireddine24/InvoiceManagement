@@ -1,4 +1,4 @@
-#Mon Feb 05 23:27:37 CET 2024
+#Sun Mar 24 01:40:32 CET 2024
 base.0=C\:\\Users\\khair\\Desktop\\ReactNative\\InvoiceManagement\\android\\app\\build\\intermediates\\dex\\release\\minifyReleaseWithR8\\classes.dex
 renamed.0=classes.dex
 path.0=classes.dex

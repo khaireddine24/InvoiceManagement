@@ -1,12 +1,12 @@
-import React, { useState, useRef, useEffect} from 'react';
+import React, { useState, useRef, useEffect, createContext } from 'react';
 import { Image, StyleSheet, Text, View, TouchableOpacity, SafeAreaView, ScrollView, DrawerLayoutAndroid, TextInput, Modal, Button, RefreshControl,ToastAndroid, Platform } from 'react-native';
 import { SelectList } from 'react-native-dropdown-select-list';
 import ExpensesList from './ExpensesList';
 import Drawer from './Drawer';
-import { convert } from 'react-native-pdf-to-image';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import DocumentPicker from 'react-native-document-picker';
 import Database from '../Database';
+import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 interface DataItem {
   idExp:any;
@@ -63,6 +63,7 @@ const Expenses = () => {
   const [showTimePicker, setShowTimePicker] = useState(false);
   const drawer = useRef<DrawerLayoutAndroid>(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
   let MyPath:any[]=[]
   const [refreshing, setRefreshing] = React.useState(false);
   const onRefresh = React.useCallback(() => {
@@ -158,24 +159,26 @@ const Expenses = () => {
     }
   };
   
-  /**const dropExpensesTable = async () => {
-    try {
-      await db.transaction(async (txn) => {
-        txn.executeSql(
-          `DROP TABLE IF EXISTS expenses;`,
-          [],
-          (tx, res) => {
-            console.log('Table expenses dropped successfully');
-          },
-          (error) => {
-            console.log('Error dropping table expenses ' + error);
-          }
-        );
-      });
-    } catch (error) {
-      console.error('Error dropping table expenses: ', error);
-    }
-  };**/
+  // const dropExpensesTable = async () => {
+  //   try {
+  //     await db.transaction(async (txn) => {
+
+
+  //       txn.executeSql(
+  //         `DROP TABLE IF EXISTS expenses;`,
+  //         [],
+  //         (tx, res) => {
+  //           console.log('Table expenses dropped successfully');
+  //         },
+  //         (error) => {
+  //           console.log('Error dropping table expenses ' + error);
+  //         }
+  //       );
+  //     });
+  //   } catch (error) {
+  //     console.error('Error dropping table expenses: ', error);
+  //   }
+  // };
 
   const showToastWithGravity = (text:string) => {
     ToastAndroid.showWithGravity(
@@ -336,6 +339,7 @@ const Expenses = () => {
       if (docs?.length) {
         const uri = docs[0]?.fileCopyUri || '';
         MyPath.push(uri);
+        let ind=MyPath.indexOf(uri);
         setPathPdf(uri);
         showToastWithGravity('PDF picked succesfully');
       }
@@ -614,20 +618,20 @@ const styles = StyleSheet.create({
   ShareMoneyDollar: {
     width: 30,
     height: 30,
-
     marginLeft: '17%',
     marginRight: '4%',
   },
   background: {
-    height: 900,
+    height: hp('100%'),
     backgroundColor: 'transparent',
   },
   button: {
+    marginLeft:'5%',
     justifyContent: 'center',
     flexDirection: 'row',
     width: '45%',
     height: 55,
-    marginTop: '1%',
+    marginTop: '15%',
     backgroundColor: '#BD1839',
     borderRadius: 30,
     shadowColor: '#000',
@@ -639,6 +643,7 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
   },
+
 });
 
 export default Expenses;

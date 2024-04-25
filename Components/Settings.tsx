@@ -4,6 +4,7 @@ import {MultipleSelectList,SelectList,} from 'react-native-dropdown-select-list'
 import ImagePicker from 'react-native-image-crop-picker';
 import {useNavigation} from '@react-navigation/native';
 import Database from '../Database';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 interface Currency {
   [x: string]: any;
@@ -24,8 +25,10 @@ const Settings = () => {
   const [name, setName] = useState('');
   const [selectedCurrency, setSelectedCurrency] = useState<string>('');
   const [selectedCurrencies, setSelectedCurrencies] = useState<string[]>([]);
+  const [originalSelectedCurrencies, setOriginalSelectedCurrencies] = useState<string[]>([]);
   const [logoUri, setLogoUri] = useState<any>();
   const [isChecked, setIsChecked] = useState<boolean>(false);
+  const [otherCurrencies, setOtherCurrencies] = useState<Currency[]>([]);
 
   const showToastWithGravity = (text:string) => {
     ToastAndroid.showWithGravity(
@@ -35,30 +38,41 @@ const Settings = () => {
       
     );
   };
+  
   const db = Database();
-  useEffect(() => {
-
-    db.transaction((tx) => {
-      tx.executeSql(
-        'SELECT * FROM welcome WHERE id = ?',[1], 
-        (_, { rows }) => {
-          const data = rows.item(0);
-          if (data) {
-            setName(data.name);
-            setLogoUri(data.logo ? { uri: data.logo } : defaultLogo);
-            setSelectedCurrency(data.mainCurrency);
-            setSelectedCurrencies(data.othersCurrencies.split(','));
-            setIsChecked(data.deviceLock === 'true');
+  const fetchDataAndSetSelectedCurrencies = async () => {
+    try {
+      await db.transaction((tx) => {
+        tx.executeSql(
+          'SELECT * FROM welcome WHERE id = ?',
+          [1],
+          (_, { rows }) => {
+            const data = rows.item(0);
+            if (data) {
+              setName(data.name);
+              setLogoUri(data.logo ? { uri: data.logo } : defaultLogo);
+              setSelectedCurrency(data.mainCurrency);
+              setOriginalSelectedCurrencies(data.otherCurrencies.split(','));
+              setIsChecked(data.deviceLock === 'true');
+            }
+          },
+          (error) => {
+            console.log('Error fetching data from the database', error);
           }
-        },
-        (error) => {
-          console.log('Error fetching data from the database', error);
-        }
-      );
-    });
+        );
+      });
+    } catch (error) {
+      console.error('Error fetching data from the database:', error);
+    }
+  };
+  useEffect(() => {
+    fetchDataAndSetSelectedCurrencies();
+  }, []);  
 
-
-  }, []);
+  useEffect(() => {
+    const updatedOtherCurrencies = curr.filter(currency => currency.value !== selectedCurrency);
+    setOtherCurrencies(updatedOtherCurrencies);
+  }, [selectedCurrency]);
 
   const handleSaveSettings = () => {
     if (!name || !selectedCurrency || selectedCurrencies.length === 0) {
@@ -74,14 +88,14 @@ const Settings = () => {
           const existingLogo = rows.item(0)?.logo;
   
           tx.executeSql(
-            'INSERT OR REPLACE INTO welcome (id, name, logo, mainCurrency, otherCurrencies, deviceLock) VALUES (?, ?, ?, ?, ?, ?)',
+            'UPDATE welcome SET name = ?, logo = ?, mainCurrency = ?, otherCurrencies = ?, deviceLock = ? WHERE id = ?',
             [
-              1,
               name,
               logoUri && logoUri !== existingLogo ? logoUri.uri : existingLogo,
               selectedCurrency,
-              selectedCurrencies.join(','),
+              selectedCurrencies.join(','),  
               isChecked ? 'true' : 'false',
+              1,
             ],
             (sqlTxn, res) => {
               console.log('Data saved to the database');
@@ -100,7 +114,7 @@ const Settings = () => {
     showToastWithGravity('Settings updated successfully!');
   };
   
-
+  
   const handlePress = () => {
     navigation.goBack();
   };
@@ -108,11 +122,9 @@ const Settings = () => {
     setIsChecked(value => !value);
   };
 
-
   const handleNameChange = (text: string) => {
     setName(text);
   };
-
   
   const handleUploadImage = async () => {
     try {
@@ -229,8 +241,9 @@ const Settings = () => {
             <SelectList
               data={curr}
               save="value"
-              placeholder="Main currencies"
+              placeholder="Main currency"
               setSelected={(val: any) => setSelectedCurrency(val)}
+              defaultOption={{key:curr.find(currency => currency.value === selectedCurrency)?.value || '',value:selectedCurrency}}
               boxStyles={{
                 borderRadius: 5,
                 borderColor: '#BD1839',
@@ -269,56 +282,57 @@ const Settings = () => {
           </View>
 
           <View style={{width: '95%'}}>
-            <MultipleSelectList
-              setSelected={(val: any) => setSelectedCurrencies(val)}
-              data={curr}
-              placeholder="Other currencies"
-              save="value"
-              onSelect={() => {}}
-              label="Currencies"
-              boxStyles={{
-                borderRadius: 5,
-                borderColor: '#BD1839',
-                borderStyle: 'solid',
-                backgroundColor: '#BD1839',
-              }}
-              inputStyles={{color: 'black', fontWeight: 'bold', fontSize: 17}}
-              dropdownTextStyles={{color: 'black', fontWeight: 'bold'}}
-              checkBoxStyles={{
-                backgroundColor: '#FFFFFF',
-                borderColor: 'black',
-              }}
-              badgeStyles={{backgroundColor: '#FFFFFF'}}
-              badgeTextStyles={{
-                color: 'black',
-                fontWeight: 'bold',
-                fontSize: 14,
-              }}
-              labelStyles={{
-                color: 'black',
-                fontWeight: 'bold',
-                fontSize: 16,
-                marginLeft: 2,
-              }}
-              dropdownItemStyles={{
-                backgroundColor: '#BD1839',
-                marginHorizontal: 5,
-                borderRadius: 5,
-              }}
-              dropdownStyles={{
-                backgroundColor: '#BD1839',
-                borderRadius: 8,
-                borderColor: '#BD1839',
-                shadowColor: '#000',
-                shadowOffset: {
-                  width: 0,
-                  height: 2,
-                },
-                shadowOpacity: 0.25,
-                shadowRadius: 8,
-                elevation: 5,
-              }}
-            />
+          <MultipleSelectList
+            setSelected={(val: any) => setSelectedCurrencies(val)}
+            data={otherCurrencies}
+            placeholder="Other currencies"
+            save="value"
+            onSelect={() => {}}
+            label="Currencies"
+            
+            boxStyles={{
+              borderRadius: 5,
+              borderColor: '#BD1839',
+              borderStyle: 'solid',
+              backgroundColor: '#BD1839',
+            }}
+            inputStyles={{color: 'black', fontWeight: 'bold', fontSize: 17}}
+            dropdownTextStyles={{color: 'black', fontWeight: 'bold'}}
+            checkBoxStyles={{
+              backgroundColor: '#FFFFFF',
+              borderColor: 'black',
+            }}
+            badgeStyles={{backgroundColor: '#FFFFFF'}}
+            badgeTextStyles={{
+              color: 'black',
+              fontWeight: 'bold',
+              fontSize: 14,
+            }}
+            labelStyles={{
+              color: 'black',
+              fontWeight: 'bold',
+              fontSize: 16,
+              marginLeft: 2,
+            }}
+            dropdownItemStyles={{
+              backgroundColor: '#BD1839',
+              marginHorizontal: 5,
+              borderRadius: 5,
+            }}
+            dropdownStyles={{
+              backgroundColor: '#BD1839',
+              borderRadius: 8,
+              borderColor: '#BD1839',
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.25,
+              shadowRadius: 8,
+              elevation: 5,
+            }}
+          />
           </View>
 
           <View style={styles.switch}>
@@ -365,7 +379,7 @@ const styles = StyleSheet.create({
     height: 25,
   },
   background: {
-    height: 900,
+    height: hp('100%'),
     backgroundColor: 'white',
   },
   image: {
@@ -423,6 +437,7 @@ const styles = StyleSheet.create({
   input: {
     borderStyle: 'solid',
     borderBottomColor: 'black',
+    color:"black",
     borderBottomWidth: 2,
     fontSize: 17,
     fontWeight: 'bold',
@@ -430,7 +445,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     marginTop: '0%',
     padding: 10,
-    color:'black',
     width: '100%',
     marginBottom: '10%',
   },

@@ -2,6 +2,7 @@ import React, { useState} from 'react'
 import { Image, StyleSheet, Text, View, TouchableOpacity, SafeAreaView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import TouchID from 'react-native-touch-id';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 const Login = () => {
   const [auth,setAuth]=useState(false);
@@ -22,6 +23,7 @@ const Login = () => {
     // Success code
     if (biometryType === 'FaceID') {
         console.log('FaceID is supported.');
+    
     } else {
         console.log('TouchID is supported.');
         if(auth){
@@ -44,6 +46,7 @@ const Login = () => {
 
 
   return (
+    
     <SafeAreaView style={styles.background}>
       <SafeAreaView style={styles.container}>
         <View><Text style={styles.text}>Use your fingerprint to Login</Text></View>
@@ -66,13 +69,14 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     padding: 20,
     width: '90%',
-    height: '90%',
+    height: hp("92%"),
     marginLeft: '5%',
     marginTop: '5%',
     alignContent: 'center',
   },
   background: {
-    height: 900,
+    height: hp('100%'),
+    
     backgroundColor: '#BD1839',
   },
   text: {

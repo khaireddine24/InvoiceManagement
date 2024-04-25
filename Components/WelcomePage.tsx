@@ -4,6 +4,7 @@ import { MultipleSelectList, SelectList } from 'react-native-dropdown-select-lis
 import ImagePicker from 'react-native-image-crop-picker';
 import { useNavigation } from '@react-navigation/native';
 import Database from '../Database';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 interface Currency {
   key: string;
@@ -125,7 +126,7 @@ const WelcomePage = () => {
     setIsChecked((value) => !value);
   };
 
-  const handleNameChange = (text: string) => {
+  const handleNameChange = (text:string) => {
     setName(text);
   };
 
@@ -184,7 +185,7 @@ const WelcomePage = () => {
             <SelectList
               data={curr}
               save="value"
-              placeholder='Main currencies'
+              placeholder='Main currency'
               setSelected={(val: any) => setSelectedCurrency(val)}
               boxStyles={{
                 borderRadius: 5,
@@ -232,10 +233,9 @@ const WelcomePage = () => {
               setSelected={(val: any) => {
                 setSelectedCurrencies(val);
               }}
-              data={curr}
+              data={curr.filter(item => item.value!==selectedCurrency)}
               placeholder='Other currencies'
               save="value"
-              onSelect={() => { }}
               label="Currencies"
               boxStyles={{
                 borderRadius: 5,
@@ -301,13 +301,13 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     padding: 20,
     width: '90%',
-    height: '90%',
+    height: hp("90%"),
     marginLeft: '5%',
     marginTop: '5%',
     alignContent: 'center',
   },
   background: {
-    height: 900,
+    height: hp("100%"),
     backgroundColor: '#BD1839',
   },
 
